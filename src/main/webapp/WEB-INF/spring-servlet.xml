@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+	
+   
+   <context:component-scan base-package="com.demo.controller"></context:component-scan>
+   
+   
+    <bean name="viewResilver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      
+      <property name="prefix">
+      <value>/WEB-INF/views/</value>
+      </property>
+    
+    <property name="suffix">
+      <value>.jsp</value>
+      </property>
+    </bean>
+    <bean id="ds" 
+    class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+    p:driverClassName="com.mysql.cj.jdbc.Driver" p:url="jdbc:mysql://localhost:3306/myuser" 
+    p:username="root" p:password="root"/>
+    
+    <bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+    <property name="dataSource" ref="ds"></property>
+    </bean>
+    <bean id="userservice" class="com.demo.service.UserServiceImpl">
+    </bean>
+    
+  <bean id="userDao" class="com.demo.dao.UserDaoImpl">
+   
+  
+   </bean>
+   
+   
+   </beans>
